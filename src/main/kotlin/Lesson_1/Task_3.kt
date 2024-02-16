@@ -9,8 +9,8 @@ fun main() {
     var minute: String = "07"
 
 //    println("Год полёта" + GAGARIN_FLIGHT_YEAR)
-//    println("Час полёта: $departureHour")
-//    println("Минуты полета: $departureMinute")
+//    println("Час полёта: $hour")
+//    println("Минуты полета: $minute")
 
     hour = "10"
     minute = "55"
