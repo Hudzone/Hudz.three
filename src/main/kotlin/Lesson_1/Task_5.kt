@@ -1,22 +1,48 @@
+// В первой реализации столкнулся с тем что из-за формата у меня остаток оставался
+// И я не мог точно вычислить остаток секунд, но нашел способ через BigDecimals
+
 package Lesson_1
+import java.math.BigDecimal
+import java.math.RoundingMode
+
+// Ввожу константы для расчётов:
+const val SEC_MIN: Int = 60 // Константа для работы со временем
+const val SEC_IN_HOUR: Int = 3600 // Константа означаяющая количество секунд в часе
 
 fun main() {
     // Ввожу переменную с секундами
-    val fullSeconds: Short = 6480
-    val fullMinutes: Int = fullSeconds / 60
+    val secondsGiven: Short = 6480
 
-    // Вычисляю количество полных часов
-    val hours: Float = fullSeconds / 3600F
-    val findHours = hours.toInt()
-    val completeHours = "%02d".format(findHours)
+    // 1.Вычисляем часы
+    val hours: Float = secondsGiven / SEC_IN_HOUR.toFloat()
 
-    // Вычисляю количество полных минут
-    val completeMinutes: Int = fullMinutes - 60
+    // Перевожу в строку чтобы извлечь полный час и остаток
+    val resultToString: String = hours.toString()
+    val fullHour = resultToString[0].toString().toInt()
+    val completeHours = "%02d".format(fullHour)
+    val timeLeft = hours - fullHour
 
-    // Вычисляю количество полных секунд
-    val seconds: Float = fullSeconds.toFloat() - ((completeMinutes * 60F) + (60F * 2))
-    val counting: Float = seconds / 100F
-    val completeSeconds = counting.toInt()
+    // 2.Вычисляем минуты
+    // Узнаем сколько в остатке от вычисления часа минут
+    val minutes: Float = timeLeft * SEC_MIN.toFloat()
 
-    println("Гагарин провел в космосе $completeHours:$completeMinutes:$completeSeconds")
+    // Узнаю можно ли округлить результат или нет, и нужно ли нам секунды вычислять
+    if (isRoundable(minutes.toDouble())) {
+        val countMin = BigDecimal(minutes.toString())
+        val countTrueResult = countMin.setScale(0, RoundingMode.UP)
+
+        // Тогда сразу вывожу результат
+        println("Гагарин провел в космосе $completeHours:$countTrueResult:00")
+
+    } else {
+        val seconds = minutes.toInt() // Получаем целое число
+        val afterPoint = (minutes - seconds) * SEC_MIN // Получаем остаток после плавающей точки и конвертируем в секунды
+    }
+
+}
+
+// пришлось ввести функцию чтобы узнать можно ли округлить
+fun isRoundable(number: Double): Boolean {
+    val counting = number - number.toInt() // Вычисляем дробную часть числа
+    return counting != 0.0
 }
