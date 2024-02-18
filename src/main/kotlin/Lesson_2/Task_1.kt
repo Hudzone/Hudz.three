@@ -3,14 +3,9 @@ package Lesson_2
 fun main() {
     val studentsResult = arrayOf(3,4,3,5)
 
-    var sum = 0
-    for (i in studentsResult) {
-        sum += i
-    }
+    var sum = studentsResult.sum()
 
-    val quantity = studentsResult.size
-
-    val arithmeticMean: Float = sum / quantity.toFloat()
+    val arithmeticMean: Float = sum / studentsResult.size.toFloat()
 
     println("======РЕЗУЛЬТАТЫ ПО АНГЛИЙСКОМУ======")
 
