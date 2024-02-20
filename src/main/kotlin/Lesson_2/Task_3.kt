@@ -12,7 +12,7 @@ fun main() {
     val completeHoursForWay = "%02d".format(hoursForWay)
     val minutesForWay = timeForWay % MIN_IN_HOUR
 
-    var arrivalHours: Int = departureHour + hoursForWay
+    val arrivalHours: Int = departureHour + hoursForWay
     val arrivalMinutes: Int = departureMinute + minutesForWay
     val finalInWayHours: Int = arrivalMinutes / MIN_IN_HOUR
     val finalArrivalHours: Int = arrivalHours + finalInWayHours
