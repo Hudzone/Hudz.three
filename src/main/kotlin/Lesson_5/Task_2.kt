@@ -5,7 +5,7 @@ const val CURRENT_YEAR = 2024
 
 fun main() {
     print("Введите ваш год рождения: ")
-    val yearOfBirth: Int = readLine()!!.toInt()
+    val yearOfBirth: Int = readln().toInt()
     val calculateAge: Int = CURRENT_YEAR - yearOfBirth
 
     if (calculateAge >= AGE_OF_MAJORITY) {
