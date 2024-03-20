@@ -10,14 +10,15 @@ fun main() {
     print("Второе число: ")
     val secondUserNum: Int = readLine()!!.toInt()
 
-    if ((firstUserNum == firstNum || firstUserNum == secondNum)
-        && (secondUserNum == firstNum || secondUserNum == secondNum)) {
-        println("Поздравляю! Вы выиграли главный приз!")
-    } else if ((firstUserNum == firstNum || firstUserNum == secondNum)
-        || (secondUserNum == firstNum || secondUserNum == secondNum)) {
-        println("Вы выиграли утешительный приз!")
-    } else {
-        println("Неудача!")
-    }
+    when {
+        (firstUserNum == firstNum || firstUserNum == secondNum) &&
+                (secondUserNum == firstNum || secondUserNum == secondNum) ->
+            println("Поздравляю! Вы выиграли главный приз!")
 
+        (firstUserNum == firstNum || firstUserNum == secondNum) ||
+            (secondUserNum == firstNum || secondUserNum == secondNum) ->
+            println("Вы выиграли утешительный приз!")
+
+        else -> println("Неудача!")
+    }
 }
