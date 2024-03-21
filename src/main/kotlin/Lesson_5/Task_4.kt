@@ -19,13 +19,12 @@ fun main() {
     print("Логин: ")
     val authLogin: String = readln()
 
-    when {
-        authLogin == USER_NAME -> {
-            print("Пароль: ")
-            val authPass: String = readln()
+    if (authLogin == USER_NAME) {
+        print("Пароль: ")
+        val authPass: String = readln()
 
-            if (authPass == PASSWORD) {
-                println("""
+        if (authPass == PASSWORD) {
+            println("""
                     Marvin:
                     [вздыхает...]
                     Ваши данные проверены, и о, чудо, они верны...
@@ -34,12 +33,11 @@ fun main() {
                     [меланхолический вздох...]
                     Надеюсь, вам понравится пребывание здесь больше, чем мне.
                 """.trimIndent())
-            } else {
-                println("Неверный пароль, попробуйте еще раз!")
-            }
+        } else {
+            println("Неверный пароль, попробуйте еще раз!")
         }
-
-        authLogin != USER_NAME -> println("Данный пользователь отсутствует! Необходима регистрация!")
+    } else {
+        println("Данный пользователь отсутствует! Необходима регистрация!")
     }
 
 }
