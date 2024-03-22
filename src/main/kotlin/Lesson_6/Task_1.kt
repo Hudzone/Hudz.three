@@ -8,10 +8,10 @@ fun main() {
     val regPass: String = readln()
     println("Пользовательские данные созданы! Теперь вы можете войти!")
 
-    var authLogin: String = "null"
-    var authPass: String = "null"
+    var authLogin: String
+    var authPass: String
 
-    while (authLogin != regLogin && authPass != regPass) {
+    do {
         println("\n===АВТОРИЗАЦИЯ===")
         print("Введите логин: ")
         authLogin = readln()
@@ -23,5 +23,5 @@ fun main() {
         } else {
             println("Логин или пароль введены неверно! Повторите!")
         }
-    }
+    } while (authLogin != regLogin || authPass != regPass)
 }
