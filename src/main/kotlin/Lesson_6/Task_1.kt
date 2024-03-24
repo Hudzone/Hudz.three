@@ -16,12 +16,15 @@ fun main() {
         print("Введите логин: ")
         authLogin = readln()
         print("Введите пароль: ")
-        authPass= readln()
+        authPass = readln()
 
         if (authLogin == regLogin && authPass == regPass) {
-            println("Авторизация прошла успешно")
+            break
         } else {
             println("Логин или пароль введены неверно! Повторите!")
         }
     } while (authLogin != regLogin || authPass != regPass)
+
+    println("Авторизация прошла успешно")
+
 }
