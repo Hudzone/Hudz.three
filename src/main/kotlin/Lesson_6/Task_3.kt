@@ -3,7 +3,7 @@ package Lesson_6
 fun main() {
     println("===ТАЙМЕР===")
     print("Сколько секунд нужно засечь: ")
-    var seconds = readLine()?.toInt() ?: return
+    var seconds = readln().toInt()
 
     while (seconds > 0) {
         print("Осталось секунд: ${seconds--} \r")
