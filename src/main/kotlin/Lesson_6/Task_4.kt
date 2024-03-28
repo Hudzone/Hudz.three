@@ -17,12 +17,6 @@ fun main() {
 
         if (userChoice != randNumber) {
             println("Неверно! Осталось $attemptsLeft попыток.")
-
-            if (userChoice > randNumber) {
-                println("Нет, число меньше!")
-            } else {
-                println("Нет, число больше!")
-            }
         } else {
             println("Это была великолепная игра!")
             return
