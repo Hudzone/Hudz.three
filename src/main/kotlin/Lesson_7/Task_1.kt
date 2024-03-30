@@ -5,7 +5,7 @@ const val ITERATIONS = 3
 fun main() {
     println("===ГЕНЕРАТОР ПАРОЛЕЙ===")
     val literalRange: CharRange = 'a'..'z'
-    val numRange = 1..9
+    val numRange = 0..9
     var password = StringBuilder()
 
     for (i in 1..ITERATIONS) {
