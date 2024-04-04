@@ -24,7 +24,6 @@ fun main() {
                 val randInd = Random.nextInt(0, randSym.size)
                 val sign = randSym[randInd]
                 password.append(sign)
-                var pass = password.toString()
             }
 
             break
