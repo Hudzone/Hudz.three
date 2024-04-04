@@ -17,19 +17,28 @@ fun main() {
 
         if (passLength < MIN_PASS_LENGTH) {
             println("Длина пароля должна быть больше 5 символов!!!")
+            continue
         } else {
 
             for (i in 0 until passLength) {
-                val randSym = listOf(charProg.random(),numProg.random(),upCharProg.random())
+                val randSym = listOf(charProg.random(), numProg.random(), upCharProg.random())
                 val randInd = Random.nextInt(0, randSym.size)
                 val sign = randSym[randInd]
                 password.append(sign)
             }
 
-            break
+            val lowerCaseExists = password.any { it.isLowerCase() }
+            val upperCaseExists = password.any { it.isUpperCase() }
+            val numExists = password.any { it.isDigit() }
+
+            if (lowerCaseExists && upperCaseExists && numExists) {
+                break
+            } else {
+                continue
+            }
+
         }
     }
 
-    println("Ваш пароль: $password")
-
+    println(password)
 }
