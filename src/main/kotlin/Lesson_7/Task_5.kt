@@ -22,23 +22,36 @@ fun main() {
 
             for (i in 0 until passLength) {
                 val randSym = listOf(charProg.random(), numProg.random(), upCharProg.random())
-                val randInd = Random.nextInt(0, randSym.size)
-                val sign = randSym[randInd]
-                password.append(sign)
-            }
+                when {
+                    i == 0 -> {
+                        val sign = randSym[0]
+                        password.append(sign)
+                    }
 
-            val lowerCaseExists = password.any { it.isLowerCase() }
-            val upperCaseExists = password.any { it.isUpperCase() }
-            val numExists = password.any { it.isDigit() }
+                    i == 1 -> {
+                        val sign = randSym[1]
+                        password.append(sign)
+                    }
 
-            if (lowerCaseExists && upperCaseExists && numExists) {
-                break
-            } else {
-                continue
+                    i == 2 -> {
+                        val sign = randSym[2]
+                        password.append(sign)
+                    }
+
+                    else -> {
+                        val randInd = Random.nextInt(0, randSym.size)
+                        val sign = randSym[randInd]
+                        password.append(sign)
+                    }
+                }
+
             }
 
         }
+
+        println("Ваш пароль: $password")
+        break
+
     }
 
-    println(password)
 }
