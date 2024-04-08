@@ -3,6 +3,7 @@ package Lesson_7
 import kotlin.random.Random
 
 const val MIN_PASS_LENGTH: Int = 6
+const val MANDATORY_CYCLES: Int = 3
 
 fun main() {
     println("===ГЕНЕРАТОР ПАРОЛЕЙ===")
@@ -20,38 +21,22 @@ fun main() {
             continue
         } else {
 
-            for (i in 0 until passLength) {
+            password.append(numProg.random())
+            password.append(charProg.random())
+            password.append(upCharProg.random())
+
+            val finalIterator: Int = passLength - MANDATORY_CYCLES
+
+            for (i in 0 until finalIterator) {
                 val randSym = listOf(charProg.random(), numProg.random(), upCharProg.random())
-                when {
-                    i == 0 -> {
-                        val sign = randSym[0]
-                        password.append(sign)
-                    }
-
-                    i == 1 -> {
-                        val sign = randSym[1]
-                        password.append(sign)
-                    }
-
-                    i == 2 -> {
-                        val sign = randSym[2]
-                        password.append(sign)
-                    }
-
-                    else -> {
-                        val randInd = Random.nextInt(0, randSym.size)
-                        val sign = randSym[randInd]
-                        password.append(sign)
-                    }
-                }
-
+                val randInd = Random.nextInt(0, randSym.size)
+                val sign = randSym[randInd]
+                password.append(sign)
             }
 
+            println("Ваш пароль: $password")
+            break
+
         }
-
-        println("Ваш пароль: $password")
-        break
-
     }
-
 }
