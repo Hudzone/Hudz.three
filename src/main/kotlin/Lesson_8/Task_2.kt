@@ -4,7 +4,7 @@ fun main() {
     val recipeList = arrayOf("картофель", "соль", "масло")
 
     print("Проверка ингридиента. Введите название: ")
-    val item: String = readln().toLowerCase()
+    val item: String = readln().lowercase()
 
     var isFound = false
 
