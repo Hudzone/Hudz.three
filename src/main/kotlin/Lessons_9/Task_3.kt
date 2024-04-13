@@ -10,6 +10,6 @@ fun main() {
     recipe.clear()
     recipe.addAll(updatedRecipe)
 
-    println("На ${userInput} порций вам понадобится Яиц – ${recipe[0]} шт., молока – ${recipe[1]} мл., сливочного масла – ${recipe[2]} гр.")
+    println("На ${userInput} порций вам понадобится яиц – ${recipe[0]} шт., молока – ${recipe[1]} мл., сливочного масла – ${recipe[2]} гр.")
 
 }
