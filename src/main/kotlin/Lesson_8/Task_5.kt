@@ -1,18 +1,18 @@
 package Lesson_8
 
 fun main() {
-    var recipeList = emptyArray<String>()
-
     println("====RECIPE BUILDER====")
     print("Сколько ингридиентов планируется: ")
 
     val numOfItems: Int = readln().toInt()
 
-    for (i in 1..numOfItems) {
+    val recipeList = arrayOfNulls<String>(numOfItems)
+
+    for (i in 0 until numOfItems) {
         print("Введите ингридиент: ")
 
         val userChoice = readln().lowercase()
-        recipeList = recipeList.plus(userChoice)
+        recipeList[i] = userChoice
 
     }
 
