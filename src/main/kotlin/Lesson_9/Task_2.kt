@@ -9,7 +9,7 @@ fun main() {
     print("Желаете добавить еще (да или нет)?: ")
     val userChoice = readln().lowercase()
 
-    if (userChoice == "да") {
+    if (userChoice.equals("да", ignoreCase = true)) {
         print("Какой ингридиент вы бы хотели добавить: ")
         val addIngridient = readln().replaceFirstChar { it.uppercase() }
 
