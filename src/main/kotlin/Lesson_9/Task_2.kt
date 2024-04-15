@@ -7,7 +7,7 @@ fun main() {
     listPrinting(listOfIngredients)
 
     print("Желаете добавить еще (да или нет)?: ")
-    val userChoice = readln().lowercase()
+    val userChoice = readln()
 
     if (userChoice.equals("да", ignoreCase = true)) {
         print("Какой ингридиент вы бы хотели добавить: ")
