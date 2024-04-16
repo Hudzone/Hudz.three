@@ -1,4 +1,4 @@
-package Lessons_9
+package Lesson_9
 
 fun main() {
     val recipe = mutableListOf<Int>(2, 50, 15)
