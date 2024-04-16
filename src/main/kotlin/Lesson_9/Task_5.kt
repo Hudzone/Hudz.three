@@ -18,13 +18,8 @@ fun main() {
 
     println("СПИСОК ИНГРИДИЕНТОВ: ")
 
-    sortedList.mapIndexed { index, ingridient ->
+    val string =
+        sortedList.joinToString(separator = ", ", postfix = ".").replaceFirstChar { it.uppercase() }
+    println(string)
 
-        if (index == 0) {
-            print("${ingridient.replaceFirstChar { it.uppercase() }}, ")
-        } else if (index == sortedList.lastIndex) {
-            print("${ingridient}.")
-        } else
-            print("${ingridient}, ")
-         }
 }
