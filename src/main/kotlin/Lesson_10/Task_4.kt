@@ -42,6 +42,7 @@ fun results(human: Int, bot: Int, humanScore: Int, botScore: Int): Pair<Int, Int
             println("Победило человечество!")
             updatedHumanScore++
         }
+
         human == bot -> println("Хрупкое перемирие")
         else -> {
             println("Победила машина 🙁")
