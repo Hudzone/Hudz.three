@@ -7,9 +7,9 @@ fun main() {
 
     while (true) {
         gameCounter++
-        val player = (1..6).random()
+        val player = throwTheDice()
         println("Игрок выбросил ${player} очков!")
-        val computer = (1..6).random()
+        val computer = throwTheDice()
         println("Компьютер выбросил ${computer} очков!")
 
         val (updatedHumanScore, updatedBotScore) = results(player, computer, humanWins, botWins)
@@ -31,6 +31,10 @@ fun main() {
     }
 }
 
+fun throwTheDice() : Int {
+    val yourScore = (1..6).random()
+    return yourScore
+}
 
 fun results(human: Int, bot: Int, humanScore: Int, botScore: Int): Pair<Int, Int> {
 
