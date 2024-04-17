@@ -8,10 +8,11 @@ fun main() {
     print("Укажите длину пароля: ")
     val passwordLength = readln().toInt()
 
-    passGen(passwordLength)
+    val yourPassword = passGen(passwordLength)
+    println("Ваш пароль: ${yourPassword}")
 }
 
-fun passGen(length: Int) {
+fun passGen(length: Int) : StringBuilder {
     val numProg = 0..MAX_NUMERALS
     val symbols = listOf<String>("!", "#", "$", "%", "&", "\'", "(", ")", "*", "+", ",", "-", ".", "/","\"", " ")
     val password = StringBuilder()
@@ -24,5 +25,5 @@ fun passGen(length: Int) {
         password.append(scnSym)
     }
 
-    println("$password")
+    return password
 }
