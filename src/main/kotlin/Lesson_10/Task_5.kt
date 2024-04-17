@@ -17,7 +17,8 @@ fun main() {
 
 }
 
-fun createJWT(username: String, password: String, userInput1: String, userInput2: String
+fun createJWT(
+    username: String, password: String, userInput1: String, userInput2: String
 ): String {
 
     val engSym: CharRange = 'a'..'z'
@@ -46,8 +47,9 @@ fun getCart(jwtToken: String) {
         println("Ваш список продуктов: ")
         var i = 0
         userCart.forEach { product ->
-            println("${++i}. ${product}") }
-        } else {
-            println("Авторизация была неудачной!")
+            println("${++i}. ${product}")
+        }
+    } else {
+        println("Авторизация была неудачной!")
     }
 }
