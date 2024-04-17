@@ -2,9 +2,9 @@ package Lesson_10
 
 fun main() {
 
-    val player = (1..6).random()
+    val player = throwTheDice()
     println("Игрок выбросил ${player} очков!")
-    val computer = (1..6).random()
+    val computer = throwTheDice()
     println("Компьютер выбросил ${computer} очков!")
 
     val result = printResult(player, computer)
@@ -12,6 +12,10 @@ fun main() {
 
 }
 
+fun throwTheDice(): Int {
+    val yourScore = (1..6).random()
+    return yourScore
+}
 
 fun printResult(human: Int, bot: Int): String {
     return when {
