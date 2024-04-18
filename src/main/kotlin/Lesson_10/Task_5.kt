@@ -66,7 +66,7 @@ fun getCart(tokenStatus: Boolean) {
         println("Ваш список продуктов: ")
         var i = 0
         userCart.forEach { product ->
-            println("${++i}. ${product}")
+            println("${++i}. $product")
         }
     } else {
         println("Авторизация была неудачной!")
