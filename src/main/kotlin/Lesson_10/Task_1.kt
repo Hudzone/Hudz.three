@@ -7,7 +7,7 @@ fun main() {
     val computer = throwTheDice()
     println("Компьютер выбросил ${computer} очков!")
 
-    val result = printResult(player, computer)
+    val result = getResult(player, computer)
     println(result)
 
 }
@@ -17,7 +17,7 @@ fun throwTheDice(): Int {
     return yourScore
 }
 
-fun printResult(human: Int, bot: Int): String {
+fun getResult(human: Int, bot: Int): String {
     return when {
         human > bot -> "Победило человечество!"
         human == bot -> "Хрупкое перемирие"
