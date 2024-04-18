@@ -11,15 +11,26 @@ fun main() {
     print("Пароль: ")
     val typedPassword = readln()
 
-    val authToken = createJWT(userLogin, userPassword, typedLogin, typedPassword)
+    val userStatus = validateUser(userLogin, userPassword, typedLogin, typedPassword)
 
-    getCart(authToken)
+    val jwtToken = createJWT(userStatus)
+
+    val tokenStatus = jwtValidation(jwtToken)
+
+    getCart(tokenStatus)
 
 }
 
-fun createJWT(
-    username: String, password: String, userInput1: String, userInput2: String
-): String {
+fun validateUser(userLogin: String, userPassword: String, typedLogin: String, typedPassword: String): Boolean {
+
+    if (userLogin == typedLogin && userPassword == typedPassword) {
+        return true
+    } else {
+        return false
+    }
+}
+
+fun createJWT(validationStatus: Boolean): String {
 
     val engSym: CharRange = 'a'..'z'
     val upEngSym: CharRange = 'A'..'Z'
@@ -27,7 +38,7 @@ fun createJWT(
     val symbolsPool = engSym.toList() + numSym.toList() + upEngSym.toList()
     val jwtToken = StringBuilder()
 
-    if (username == userInput1 && password == userInput2) {
+    if (validationStatus) {
 
         for (i in 1..JWT_TOKEN_LENGTH) {
             val generatedSymbol = symbolsPool.random()
@@ -40,10 +51,18 @@ fun createJWT(
     return jwtToken.toString()
 }
 
-fun getCart(jwtToken: String) {
+fun jwtValidation(token: String): Boolean {
+    if (token != "null") {
+        return true
+    } else {
+        return false
+    }
+}
+
+fun getCart(tokenStatus: Boolean) {
     val userCart = listOf("Картофель", "Курица", "Лук", "Чеснок", "Огурцы", "Ракета falcon-x")
 
-    if (jwtToken != "null") {
+    if (tokenStatus) {
         println("Ваш список продуктов: ")
         var i = 0
         userCart.forEach { product ->
