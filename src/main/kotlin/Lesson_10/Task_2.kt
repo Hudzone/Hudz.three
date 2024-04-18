@@ -9,19 +9,29 @@ fun main() {
     print("Введите пароль: ")
     val userPassword = readln()
 
-    credentialValidation(userName, userPassword)
+    val isLoginOk = validateString(userName)
+    val isPasswordOk = validateString(userPassword)
+
+    if (isLoginOk == true && isPasswordOk == true) {
+
+        println(
+            """
+            Ваш логин: ${userName}
+            Ваш пароль: ${userPassword}
+        """.trimIndent()
+
+        )
+    } else {
+        println("Логин или пароль недостаточно длинные!")
+    }
 
 }
 
-fun credentialValidation(login: String, pass: String) {
-    if (login.length < MIN_CRED_LENGTH || pass.length < MIN_CRED_LENGTH) {
-        println("Логин или пароль недостаточно длинные!")
+fun validateString(string: String): Boolean {
+    if (string.length < MIN_CRED_LENGTH) {
+        return false
     } else {
-        println(
-            """
-            Ваш логин: ${login}
-            Ваш пароль: ${pass}
-        """.trimIndent()
-        )
+        return true
     }
+
 }
