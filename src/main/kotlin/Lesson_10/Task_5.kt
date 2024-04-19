@@ -17,7 +17,11 @@ fun main() {
 
     val tokenStatus = jwtValidation(jwtToken)
 
-    getCart(tokenStatus)
+    if (userStatus && tokenStatus) {
+        printCart()
+    } else {
+        println("Неудачная авторизация!")
+    }
 
 }
 
@@ -38,14 +42,9 @@ fun createJWT(validationStatus: Boolean): String {
     val symbolsPool = engSym.toList() + numSym.toList() + upEngSym.toList()
     val jwtToken = StringBuilder()
 
-    if (validationStatus) {
-
-        for (i in 1..JWT_TOKEN_LENGTH) {
-            val generatedSymbol = symbolsPool.random()
-            jwtToken.append(generatedSymbol)
-        }
-    } else {
-        jwtToken.append("null")
+    for (i in 1..JWT_TOKEN_LENGTH) {
+        val generatedSymbol = symbolsPool.random()
+        jwtToken.append(generatedSymbol)
     }
 
     return jwtToken.toString()
@@ -59,16 +58,12 @@ fun jwtValidation(token: String): Boolean {
     }
 }
 
-fun getCart(tokenStatus: Boolean) {
+fun printCart() {
     val userCart = listOf("Картофель", "Курица", "Лук", "Чеснок", "Огурцы", "Ракета falcon-x")
 
-    if (tokenStatus) {
-        println("Ваш список продуктов: ")
-        var i = 0
-        userCart.forEach { product ->
-            println("${++i}. $product")
-        }
-    } else {
-        println("Авторизация была неудачной!")
+    println("Ваш список продуктов: ")
+    var i = 0
+    userCart.forEach { product ->
+        println("${++i}. $product")
     }
 }
