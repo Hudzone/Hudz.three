@@ -8,11 +8,11 @@ fun main() {
     while (true) {
         gameCounter++
         val player = throwTheDice()
-        println("Игрок выбросил ${player} очков!")
+        println("Игрок выбросил $player очков!")
         val computer = throwTheDice()
-        println("Компьютер выбросил ${computer} очков!")
+        println("Компьютер выбросил $computer очков!")
 
-        val (updatedHumanScore, updatedBotScore) = results(player, computer, humanWins, botWins)
+        val (updatedHumanScore, updatedBotScore) = getResult(player, computer, humanWins, botWins)
         humanWins = updatedHumanScore
         botWins = updatedBotScore
 
@@ -23,7 +23,7 @@ fun main() {
             if (userChoice.equals("да", ignoreCase = true)) {
                 continue
             } else {
-                println("Результаты: человек - ${humanWins} очков, машина - ${botWins} очков.")
+                println("Результаты: человек - $humanWins очков, машина - $botWins очков.")
                 break
             }
         }
@@ -31,12 +31,9 @@ fun main() {
     }
 }
 
-fun throwTheDice() : Int {
-    val yourScore = (1..6).random()
-    return yourScore
-}
+fun throwTheDice(): Int = (1..6).random()
 
-fun results(human: Int, bot: Int, humanScore: Int, botScore: Int): Pair<Int, Int> {
+fun getResult(human: Int, bot: Int, humanScore: Int, botScore: Int): Pair<Int, Int> {
 
     var updatedHumanScore = humanScore
     var updatedBotScore = botScore
