@@ -1,14 +1,5 @@
 package lesson_11
 
-class User(
-    val id: Int,
-    val login: String,
-    val password: String,
-    val eMail: String,
-) {
-
-}
-
 class User2(
     val id: Int,
     val login: String,
