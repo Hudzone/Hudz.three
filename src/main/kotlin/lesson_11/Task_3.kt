@@ -35,11 +35,13 @@ class ChatRoom(
     fun printUserInfo(avatar: String) {
         chatUsers.forEach { it ->
             if (it.profileImage.contains(avatar)) {
-                println("""
+                println(
+                    """
                     === ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ ===
                     Логин: ${it.userName}
                     Статус: ${it.status}
-                """.trimIndent())
+                """.trimIndent()
+                )
             }
         }
     }
