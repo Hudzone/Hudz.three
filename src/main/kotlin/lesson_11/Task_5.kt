@@ -16,14 +16,14 @@ fun main() {
 class Forum(
     val forumId: Int,
     var forumTitle: String,
-    var userList: MutableList<forumMember> = mutableListOf(),
-    var messagesBase: MutableMap<forumMember, forumMessage> = mutableMapOf(),
+    var userList: MutableList<ForumMember> = mutableListOf(),
+    var messagesBase: MutableMap<ForumMember, ForumMessage> = mutableMapOf(),
 ) {
     fun createNewUser(
         name: String,
         id: Int = (0..100).random(),
     ) {
-        val usr = forumMember(id, name)
+        val usr = ForumMember(id, name)
         userList.add(usr)
     }
 
@@ -32,7 +32,7 @@ class Forum(
 
         if (objThatNeeded != null) {
             val usrMessage = "Тестовое сообщение хехеххехехех"
-            val message = forumMessage(id, usrMessage)
+            val message = ForumMessage(id, usrMessage)
             messagesBase.put(objThatNeeded, message)
         } else {
             println("Пользователь не найден!")
@@ -48,12 +48,12 @@ class Forum(
     }
 }
 
-class forumMember(
+class ForumMember(
     var userId: Int,
     var userName: String,
 )
 
-class forumMessage(
+class ForumMessage(
     val authorId: Int,
     val message: String,
 )
