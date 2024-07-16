@@ -1,5 +1,6 @@
 package lesson_12
 
+const val KELVIN_OP = 273
 
 fun main() {
 
@@ -7,16 +8,11 @@ fun main() {
     day1.displayInfo()
 }
 
-class WeatherInformation(var _dayTemp: Int, var _nightTemp: Int,var _isRainyToday: Boolean ) {
+class WeatherInformation(_dayTemp: Int, _nightTemp: Int, _isRainyToday: Boolean ) {
 
-    var dayTemp: Int = _dayTemp
-    var nightTemp: Int = _nightTemp
+    var dayTemp: Int = _dayTemp - KELVIN_OP
+    var nightTemp: Int = _nightTemp - KELVIN_OP
     var isRainyToday: Boolean = _isRainyToday
-
-    init {
-        dayTemp = _dayTemp - 273
-        nightTemp = _nightTemp - 273
-    }
 
     fun displayInfo() {
         println("""
