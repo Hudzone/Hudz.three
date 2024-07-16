@@ -5,7 +5,7 @@ class Recipe(
     var title: String,
     var recipeCover: String,
     var servings: Int,
-    var ingredients: MutableList<Ingridient> = mutableListOf(),
+//    var ingredients: MutableList<Ingridient> = mutableListOf(),
     var chosenRecipe: String,
 ) {
     fun servingsBar(value: Int) {
