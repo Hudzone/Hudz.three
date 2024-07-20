@@ -11,7 +11,8 @@ fun main() {
         ContactI("User5", 84759837473, "Mundfish"),
     )
 
-    val resultList = contactList.mapNotNull { contact -> if (contact.company != "null" && contact.company != null) contact else null }
+    val resultList =
+        contactList.mapNotNull { contact -> if (contact.company != "null" && contact.company != null) contact else null }
 
     println("Список существующих компаний: ")
     resultList.forEach { contact -> println("${contact.company}") }
