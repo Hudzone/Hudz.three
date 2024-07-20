@@ -5,10 +5,10 @@ fun main() {
     obj.print()
 }
 
-class ContactItem(val name: String, val number: Long) {
-    val company: String = null ?: "<не указано>"
+class ContactItem(val name: String, val number: Long ) {
+    val company: String? = null
 
     fun print() {
-        println("Имя: $name\nНомер: $number\nКомпания: $company")
+        println("Имя: $name\nНомер: $number\nКомпания: ${company ?: "<не указано>"}")
     }
 }
