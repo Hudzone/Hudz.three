@@ -11,7 +11,8 @@ fun main() {
         ContactI("User5", 84759837473, "Mundfish"),
     )
 
-    contactList.forEach { contact -> contact.print() }
+    val resultList = contactList.mapNotNull { contact -> if (contact.company != "null") contact else null }
+    resultList.forEach { contact -> contact.print() }
 
 }
 
