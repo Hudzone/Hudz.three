@@ -16,9 +16,9 @@ fun main() {
 }
 
 class ContactI(val name: String, val number: Long, val _company: String?) {
-    val company: String = _company ?: "<не указано>"
+    val company: String? = _company
 
     fun print() {
-        println("Имя: $name\nНомер: $number\nКомпания: $company\n")
+        println("Имя: $name\nНомер: $number\nКомпания: ${company ?: "<не указано>"}\n")
     }
 }
