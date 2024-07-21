@@ -115,6 +115,7 @@ class IceBreakerShip(
 
     fun sailThroughIce() {
         println("$name go through Ice, using shield. Shield condition is $shield percent.")
+        shield -= 20
     }
 
     init {
