@@ -1,6 +1,7 @@
 package lesson_14
 
 const val DEFAULT_MULTIPLIER: Int = 2
+const val PI: Double = 3.14
 
 fun main() {
 
@@ -38,7 +39,6 @@ fun main() {
     println("Сумма периметров черных фигур: $summOfPerimeters")
     println("Сумма площадей белых фигур: $summOfAreas")
 
-
 }
 
 abstract class Figure(open val color: String) {
@@ -51,15 +51,14 @@ abstract class Figure(open val color: String) {
 class Circle(
     override val color: String,
     val circleRadius: Int,
-    val pi: Double = 3.14,
 ) : Figure(color) {
 
     override fun calculateArea(): Double {
-        return (circleRadius * circleRadius) * pi
+        return (circleRadius * circleRadius) * PI
     }
 
     override fun calculatePerimeter(): Double {
-        return (DEFAULT_MULTIPLIER * circleRadius) * pi
+        return (DEFAULT_MULTIPLIER * circleRadius) * PI
     }
 }
 
