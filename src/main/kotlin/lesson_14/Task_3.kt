@@ -1,7 +1,5 @@
 package lesson_14
 
-
-const val PI_NUM: Double = 3.14
 const val DEFAULT_MULTIPLIER: Int = 2
 
 fun main() {
@@ -43,9 +41,8 @@ fun main() {
 
 }
 
-abstract class Figure {
+abstract class Figure(open val color: String) {
 
-    abstract val color: String
     abstract fun calculateArea(): Double
     abstract fun calculatePerimeter(): Double
 
@@ -54,8 +51,8 @@ abstract class Figure {
 class Circle(
     override val color: String,
     val circleRadius: Int,
-    val pi: Double = PI_NUM,
-) : Figure() {
+    val pi: Double = 3.14,
+) : Figure(color) {
 
     override fun calculateArea(): Double {
         return (circleRadius * circleRadius) * pi
@@ -70,7 +67,7 @@ class Rectangle(
     override val color: String,
     val length: Int,
     val width: Int,
-) : Figure() {
+) : Figure(color) {
 
     override fun calculateArea(): Double {
         return length.toDouble() * width.toDouble()
