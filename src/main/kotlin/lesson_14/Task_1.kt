@@ -23,10 +23,10 @@ fun main() {
 }
 
 open class Liner(
-    var name: String,
-    var speed: Int = 100,
-    var storage: Int = 750,
-    var passengers: Int = 1000,
+    open var name: String,
+    open var speed: Int = 100,
+    open var storage: Int = 750,
+    open var passengers: Int = 1000,
 ) {
 
     open fun startTheEngine() {
@@ -46,7 +46,10 @@ open class Liner(
 class Cargo(
     name: String,
     var movers: Int,
-) : Liner(name, speed = 75, storage = 1500, passengers = 0) {
+    override var speed: Int = 75,
+    override var storage: Int = 1500,
+    override var passengers: Int = 0,
+) : Liner(name, speed, storage, passengers) {
 
     fun loadTheCargo(capacity: Int) {
         println("$name loaded $capacity t.")
@@ -63,8 +66,11 @@ class Cargo(
 
 class IceBreaker(
     name: String,
+    override var speed: Int = 50,
+    override var storage: Int = 350,
+    override var passengers: Int = 0,
     var shield: Int = STANDART_SHIELD_CAPACITY,
-) : Liner(name, speed = 50, storage = 350, passengers = 0) {
+) : Liner(name, speed, storage, passengers) {
 
     override fun startTheEngine() {
         super.startTheEngine()
