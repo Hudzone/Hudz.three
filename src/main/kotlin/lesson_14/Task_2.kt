@@ -26,7 +26,7 @@ open class LinerShip(
     open fun shipInfo() {
         println(
             """
-            LINER INFORMATION:
+            SHIP INFORMATION:
             Name: $name
             Max speed: $speed km/h
             Storage capacity: $storage tonn
@@ -35,7 +35,7 @@ open class LinerShip(
         )
     }
 
-    fun activatePassengerRamp() {
+    open fun shipLoad() {
         println("Activating Ramp")
     }
 
@@ -58,19 +58,7 @@ class CargoShip(
     var movers: Int,
 ) : LinerShip(name, speed = 75, storage = 1500, passengers = 0) {
 
-    override fun shipInfo() {
-        println(
-            """
-            CARGO SHIP INFORMATION:
-            Name: $name
-            Max speed: $speed kn/h
-            Storage capacity: $storage tonn
-            Quantity of movers: $movers people
-        """.trimIndent()
-        )
-    }
-
-    fun cargoCraneActivator() {
+    override fun shipLoad() {
         if (movers > 50) {
             println("$name' cargo crane activated")
         } else {
@@ -96,21 +84,13 @@ class IceBreakerShip(
     var shield: Int = STANDART_SHIELD_CAPACITY,
 ) : LinerShip(name, speed = 50, storage = 350, passengers = 0) {
 
-    override fun shipInfo() {
-        println(
-            """
-            CARGO SHIP INFORMATION:
-            Name: $name
-            Max speed: $speed km/h
-            Storage capacity: $storage tonn
-            Ice shield condition: $shield %
-        """.trimIndent()
-        )
-    }
-
     override fun startTheEngine() {
         super.startTheEngine()
         println("$name' nuclear engine started")
+    }
+
+    override fun shipLoad() {
+        println("Open gate A")
     }
 
     fun sailThroughIce() {
