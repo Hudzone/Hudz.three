@@ -1,26 +1,41 @@
 package lesson_14
 
+import java.util.Objects
+
 fun main() {
 
     val chat = Chat()
 
     chat.addMessage("Геннадий", "А что вы думаете о Ктулху?")
-    chat.addThreadMessage(chat.messages[0], "КтулхуФхтагн!", "Спииииит родимый, дожидается!")
-    chat.addThreadMessage(chat.messages[0], "Анон", "Совсем чокнулись уже, пейте таблетки")
+    chat.addThreadMessage(chat.messages[0][0], "КтулхуФхтагн!", "Спииииит родимый, дожидается!")
+    chat.addThreadMessage(chat.messages[0][0], "Анон", "Совсем чокнулись уже, пейте таблетки")
 
+    chat.addMessage("Виктор", "Как чинить Мицубу Паджеро?")
+    chat.addThreadMessage(
+        chat.messages[1][0], "Чумазый", "Обращайтесь в наш автосалон"
+    )
+    chat.addThreadMessage(
+        chat.messages[1][0],
+        "ВАЗолюб",
+        "лучше на наших катать, ее можно ключом и чей то матерью починить"
+    )
     chat.printChat()
 }
 
 class Chat(
-    var messages: MutableList<Message> = mutableListOf(),
+    var idCounter: Int = 0,
+    var messages: MutableList<MutableList<Message>> = mutableListOf(),
 ) {
     fun addMessage(
         author_name: String,
         message_body: String,
     ) {
-        val message: Message = Message(author = author_name, message = message_body)
-        messages.add(message)
-        messages.groupBy { it.messageId }
+        val id = ++idCounter
+        var messageContainer: MutableList<Message> = mutableListOf()
+        val message = Message(author_name, message_body, id)
+        messageContainer.add(message)
+        messages.add(messageContainer)
+
     }
 
     fun addThreadMessage(
@@ -28,27 +43,36 @@ class Chat(
         author_name: String,
         message_body: String,
     ) {
-        val subMessage: ChildMessage = ChildMessage(parentMessage, author_name, message_body)
-        parentMessage.subMessages.groupBy { it.parentMessageId }
+
+        messages.find { it.contains(parentMessage) }?.let { it ->
+
+            val childMessage: ChildMessage = ChildMessage(parentMessage, message_body, author_name)
+            it.add(childMessage)
+
+        }
     }
 
     fun printChat() {
 
         messages.forEach { it ->
-            println(
-                """
+
+            it.forEach { actualMessage ->
+                if (actualMessage.messageId != null) {
+                    println(
+                        """
                 =========================
-                ID: ${it.messageId} Автор: ${it.author}
+                ID: ${actualMessage.messageId} Автор: ${actualMessage.author}
                 =========================
-                ${it.message}
+                ${actualMessage.message}
                 тред --->
                 
             """.trimIndent()
-            )
-
-            it.subMessages.forEach { it ->
-                println("\tID: ${it.parentMessageId} Автор: ${it.author}\n\t${it.message}\n")
+                    )
+                } else {
+                    println("\tID: ${actualMessage.messageId} Автор: ${actualMessage.author}\n\t${actualMessage.message}\n")
+                }
             }
+
         }
 
     }
@@ -58,25 +82,14 @@ class Chat(
 open class Message(
     val author: String,
     val message: String,
-    var subMessages: MutableList<ChildMessage> = mutableListOf(),
-    val messageId: Int = (0..99999).random(),
+    val messageId: Int?,
 ) {
-
-    fun addChildMessage(message: ChildMessage) {
-        subMessages.add(message)
-    }
-
 }
 
 class ChildMessage(
     val parentMessage: Message,
     author: String,
     message: String,
-    val parentMessageId: Int = (0..99999).random(),
-) : Message(author, message) {
-
-    init {
-        parentMessage.addChildMessage(this)
-    }
-
+    messageId: Int? = null,
+) : Message(author, message, messageId) {
 }
