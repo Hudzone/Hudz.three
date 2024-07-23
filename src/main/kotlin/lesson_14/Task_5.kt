@@ -93,6 +93,5 @@ class ChildMessage(
     author: String,
     message: String,
     messageId: Int = (0..99999).random(),
-    val parentMessageId: Int = parentMessage.messageId,
 ) : Message(author, message, messageId) {
 }
