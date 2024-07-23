@@ -46,7 +46,7 @@ class Chat(
 
         messages.find { it.contains(parentMessage) }?.let { it ->
 
-            val childMessage: ChildMessage = ChildMessage(parentMessage, message_body, author_name)
+            val childMessage: ChildMessage = ChildMessage(parentMessage, author_name, message_body)
             it.add(childMessage)
 
         }
@@ -56,21 +56,23 @@ class Chat(
 
         messages.forEach { it ->
 
-            it.forEach { actualMessage ->
-                if (actualMessage.messageId != null) {
-                    println(
-                        """
+            val parentPost = it[0]
+
+            println(
+                """
                 =========================
-                ID: ${actualMessage.messageId} Автор: ${actualMessage.author}
+                ID: ${parentPost.messageId} Автор: ${parentPost.author}
                 =========================
-                ${actualMessage.message}
+                ${parentPost.message}
                 тред --->
                 
             """.trimIndent()
-                    )
-                } else {
-                    println("\tID: ${actualMessage.messageId} Автор: ${actualMessage.author}\n\t${actualMessage.message}\n")
-                }
+            )
+
+            val sortedThreadMessages = it.drop(1).sortedBy { it.messageId }
+
+            sortedThreadMessages.forEach { threadMessage ->
+                println("\tID: ${threadMessage.messageId} Автор: ${threadMessage.author}\n\t${threadMessage.message}\n")
             }
 
         }
@@ -82,7 +84,7 @@ class Chat(
 open class Message(
     val author: String,
     val message: String,
-    val messageId: Int?,
+    val messageId: Int,
 ) {
 }
 
@@ -90,6 +92,7 @@ class ChildMessage(
     val parentMessage: Message,
     author: String,
     message: String,
-    messageId: Int? = null,
+    messageId: Int = (0..99999).random(),
+    val parentMessageId: Int = parentMessage.messageId,
 ) : Message(author, message, messageId) {
 }
