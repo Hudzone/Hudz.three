@@ -6,13 +6,13 @@ fun main() {
 
     println("Форум создан")
 
-    val vasya = User(1, balabolnya,"Васёк")
-    val borya = User(2, balabolnya,"Убиватор666")
+    val vasya = User(1, balabolnya, "Васёк")
+    val borya = User(2, balabolnya, "Убиватор666")
 
     printUser(balabolnya)
 
-    val goga = Admin(0, balabolnya,"Повелитель_всея_всего")
-    val lyoha = Admin(999, balabolnya,"Баню_по_приколу!_Вопросы?")
+    val goga = Admin(0, balabolnya, "Повелитель_всея_всего")
+    val lyoha = Admin(999, balabolnya, "Баню_по_приколу!_Вопросы?")
 
     printAdmin(balabolnya)
 
@@ -36,15 +36,6 @@ fun main() {
     printUser(balabolnya)
     lyoha.send(balabolnya, message = "Рил))0")
     lyoha.read(balabolnya)
-
-
-
-
-
-
-
-
-
 
 
 }
@@ -87,12 +78,14 @@ open class User(
 
     override fun read(source: Forum) {
         source.messages.forEach { sms ->
-            println("""
+            println(
+                """
                 ID: ${sms.id} Author: ${sms.author} 
                 ===================================
                 ${sms.body}
                 ===================================
-            """.trimIndent())
+            """.trimIndent()
+            )
             println()
         }
     }
@@ -108,7 +101,7 @@ class Admin(
         forum.admins.add(this)
     }
 
-    override fun send(address: Forum, user: ForumBaseActions,  message: String) {
+    override fun send(address: Forum, user: ForumBaseActions, message: String) {
 
         val text = MessageObj(this, message)
         address.messages.add(text)
@@ -117,12 +110,14 @@ class Admin(
 
     override fun read(source: Forum) {
         source.messages.forEach { sms ->
-            println("""
+            println(
+                """
                 ID: ${sms.id} Author: ${sms.author} 
                 ===================================
                 ${sms.body}
                 ===================================
-            """.trimIndent())
+            """.trimIndent()
+            )
             println()
         }
     }
