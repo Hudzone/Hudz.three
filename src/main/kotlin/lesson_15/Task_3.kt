@@ -40,10 +40,10 @@ fun main() {
 
 }
 
-interface ForumBaseActions {
+abstract class ForumBaseActions {
 
-    fun send(address: Forum, author: ForumBaseActions = this, message: String)
-    fun read(message: Forum)
+    abstract fun send(source: Forum, message: String)
+    abstract fun read(source: Forum)
 
 }
 
@@ -57,19 +57,19 @@ class MessageObj(
     val author: ForumBaseActions,
     val body: String,
     val id: Int = (1..1311415).random(),
-) {}
+)
 
-open class User(
+class User(
     val id: Int,
     val forum: Forum,
     val name: String,
-) : ForumBaseActions {
+) : ForumBaseActions() {
 
     init {
         forum.users.add(this)
     }
 
-    override fun send(address: Forum, user: ForumBaseActions, message: String) {
+    override fun send(address: Forum, message: String) {
 
         val text = MessageObj(this, message)
         address.messages.add(text)
@@ -95,13 +95,13 @@ class Admin(
     val id: Int,
     val forum: Forum,
     val name: String
-) : ForumBaseActions {
+) : ForumBaseActions() {
 
     init {
         forum.admins.add(this)
     }
 
-    override fun send(address: Forum, user: ForumBaseActions, message: String) {
+    override fun send(address: Forum, message: String) {
 
         val text = MessageObj(this, message)
         address.messages.add(text)
