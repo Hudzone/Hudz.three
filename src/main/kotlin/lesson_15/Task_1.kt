@@ -10,46 +10,41 @@ fun main() {
     fish.diveIn()
     fish.popUp()
 
-    seagull.diveIn()
     seagull.fly()
     seagull.land()
     seagull.takeOff()
 
     duck.swim()
     duck.diveIn()
+    duck.popUp()
     duck.fly()
     duck.land()
     duck.takeOff()
-    
+
 }
 
-interface Waterfowl {
+interface Swimming {
 
-    fun swim() {}
+    fun swim()
 
-    fun diveIn() {}
+    fun diveIn()
 
-    fun popUp() {}
+    fun popUp()
 
 }
 
 interface Flying {
 
-    fun fly() {}
+    fun fly()
 
-    fun land() {}
+    fun land()
 
-    fun takeOff() {}
-
-}
-
-abstract class Creature : Waterfowl, Flying {
-
-    abstract val name: String
+    fun takeOff()
 
 }
 
-class Crucian(override val name: String) : Creature(), Waterfowl {
+
+class Crucian(val name: String) : Swimming {
 
     override fun swim() {
         println("$name плывет")
@@ -65,11 +60,7 @@ class Crucian(override val name: String) : Creature(), Waterfowl {
 
 }
 
-class Seagull(override val name: String) : Creature() {
-
-    override fun diveIn() {
-        println("$name ныряет")
-    }
+class Seagull(val name: String) : Flying {
 
     override fun fly() {
         println("$name летит")
@@ -84,7 +75,7 @@ class Seagull(override val name: String) : Creature() {
     }
 }
 
-class Duck(override val name: String) : Creature() {
+class Duck(val name: String) : Swimming, Flying {
 
     override fun swim() {
         println("$name плывет по поверхности")
@@ -92,6 +83,10 @@ class Duck(override val name: String) : Creature() {
 
     override fun diveIn() {
         println("$name ныряет")
+    }
+
+    override fun popUp() {
+        println("$name выниривает")
     }
 
     override fun fly() {
