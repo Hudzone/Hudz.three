@@ -38,12 +38,12 @@ class PrecipitationAmount(val precipitation: Double) : WeatherStationStats() {
 
 class WeatherServer {
 
-    fun get(data : WeatherStationStats) {
+    fun get(data: WeatherStationStats) {
 
-        when (data.infoType()) {
+        when (data) {
 
-            "Temperature" -> println("${data.value}")
-            "PrecipitationAmount" -> println("${data.value}")
+            is Temperature -> println("${data.value}")
+            is PrecipitationAmount -> println("${data.value}")
 
         }
 
