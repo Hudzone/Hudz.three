@@ -9,7 +9,6 @@ fun main() {
 
     guitar.search()
 
-
 }
 
 interface Searchable {
