@@ -3,9 +3,9 @@ package lesson_15
 fun main() {
 
     val guitar = Instrument("Gibson LesPaul Standart", 12)
-    val strings_10 = InstrumentParts(guitar, "Струны 10 мм", 33)
-    val strings_12 = InstrumentParts(guitar, "Струны 12 мм", 22)
-    val tuner = InstrumentParts(guitar, "Тюнер цифровой Sony", 10)
+    val strings_10 = InstrumentPart(guitar, "Струны 10 мм", 33)
+    val strings_12 = InstrumentPart(guitar, "Струны 12 мм", 22)
+    val tuner = InstrumentPart(guitar, "Тюнер цифровой Sony", 10)
 
     guitar.search()
 
@@ -25,7 +25,7 @@ abstract class Item {
 class Instrument(
     override val name: String,
     override val quantity: Int,
-    var parts: MutableList<InstrumentParts> = mutableListOf(),
+    var parts: MutableList<InstrumentPart> = mutableListOf(),
 ) : Item(), Searchable {
     override fun search() {
         val animationUnit = listOf(".", ".", ".", ".", ".\n")
@@ -41,7 +41,7 @@ class Instrument(
     }
 }
 
-class InstrumentParts(
+class InstrumentPart(
     val fatherLayer: Instrument,
     override val name: String,
     override val quantity: Int,
