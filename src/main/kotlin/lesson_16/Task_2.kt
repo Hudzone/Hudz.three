@@ -1,5 +1,7 @@
 package lesson_16
 
+const val PI: Double = 3.14
+
 fun main() {
 
     val radius: Double = 5.0
@@ -12,10 +14,10 @@ fun main() {
 
 
 class Round(
-    val radius: Double,
+    private val radius: Double,
 ) {
 
-    private val pi: Double = 3.14
+    private val pi: Double = PI
 
     fun roundLength() {
         val result = 2 * (pi * radius)
