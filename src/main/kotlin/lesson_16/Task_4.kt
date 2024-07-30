@@ -11,10 +11,14 @@ fun main() {
 
 class Order(
     private val orderNumber: Int,
-    var orderStatus: Boolean = false,
+    private var orderStatus: Boolean = false,
 ) {
 
-    fun changeOrderStatus(changeStatus: Boolean) {
+    fun statusOperator(status: Boolean) {
+        changeOrder(status)
+    }
+
+    private fun changeOrder(changeStatus: Boolean) {
         orderStatus = changeStatus
 
         if (orderStatus) {
@@ -31,7 +35,7 @@ class Manager(
 ) {
 
     fun changeStatus(changeStatus: Boolean) {
-        orderObj.changeOrderStatus(changeStatus)
+        orderObj.statusOperator(changeStatus)
     }
 
 }
