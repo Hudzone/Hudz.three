@@ -13,23 +13,16 @@ fun main() {
 
 }
 
-abstract class Player {
-    abstract val name: String
-    abstract var health: Int
-    abstract var damage: Int
-    abstract fun getDamage(bully: Player)
-    abstract fun healPotion()
-}
 
 class Hero(
-    override val name: String,
-    override var damage: Int,
-    override var health: Int = 100,
-) : Player() {
+    val name: String,
+    var damage: Int,
+    private var health: Int = 100,
+) {
 
     private var isHeroDead: Boolean = false
 
-    override fun getDamage(bully: Player) {
+    fun getDamage(bully: Hero) {
         val wounds = bully.damage
         this.health -= wounds
 
@@ -41,10 +34,15 @@ class Hero(
 
     }
 
-    override fun healPotion() {
+     fun healPotion() {
 
         if (!isHeroDead) {
             this.health += 30
+
+            if (health > 100) {
+                this.health = 100
+            }
+
             println("Использовано зелье здоровья. Текущее здоровье ${this.name}: $health\n")
         } else {
             println("Персонаж мёртв, лечение $name невозможно!\n")
