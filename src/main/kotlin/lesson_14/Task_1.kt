@@ -1,7 +1,5 @@
 package lesson_14
 
-const val STANDART_SHIELD_CAPACITY: Int = 100
-
 fun main() {
 
     val linerSample = Liner("Evidence")
