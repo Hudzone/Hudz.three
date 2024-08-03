@@ -38,7 +38,7 @@ class CubePack(
         println("Площадь поверхности прямоугольной коробки: $result")
     }
 
-    fun Int.getSquare(): Int {
+    private fun Int.getSquare(): Int {
         return this * this
     }
 }
