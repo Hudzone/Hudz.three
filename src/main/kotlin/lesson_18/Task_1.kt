@@ -2,56 +2,57 @@ package lesson_18
 
 fun main() {
 
-    val order1 = Order(1, "пельмени")
-    val order2 = Order(2, "лимонад,макароны котлеты")
+    val list1 = listOf("пельмени")
+    val list2 = listOf("лимонад", "макароны", "котлеты")
 
-    order1.printItems()
-    order2.printItems()
+    val order1 = Order(1, list1)
+    val order2 = Order(2, list2)
+
+    order1.printButton()
+    order2.printButton()
 
 }
 
 class Order(
     val orderNumber: Int,
-    private val items: String,
+    private val items: List<String>,
 ) {
-    private var itemString: String = ""
-    private var itemContainer: MutableList<String> = mutableListOf()
+
+    private var singleItem: String = " "
+    private var multipleItems: List<String> = mutableListOf()
+
 
     init {
-        if (items.contains(",")) {
-
-            items.split(Regex("[,\\s]")).forEach { item ->
-                itemContainer.add(item)
-            }
-
+        if (items.size == 1) {
+            singleItem = items[0]
         } else {
-            itemString = items
+            multipleItems = items
         }
     }
-
-    fun printItems() {
-        if (itemContainer.isEmpty()) {
-            printItem(itemString)
-        } else {
-            printItemsContainer(itemContainer)
-        }
-    }
-
 
     private fun printItem(
-        itemString: String,
+        item: String,
     ) {
-        println("Заказан товар: $itemString")
+        println("Заказан товар: $item")
     }
 
-    private fun printItemsContainer(
-        itemContainer: MutableList<String>,
+    private fun printItem(
+        item: List<String>,
     ) {
 
         print("Заказаны следующие товары: ")
 
-        itemContainer.forEach { it ->
+        item.forEach { it ->
             print("$it ")
+        }
+    }
+
+    fun printButton() {
+
+        if (multipleItems.isEmpty()) {
+            printItem(singleItem)
+        } else {
+            printItem(multipleItems)
         }
     }
 
