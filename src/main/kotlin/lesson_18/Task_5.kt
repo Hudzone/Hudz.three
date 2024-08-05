@@ -19,24 +19,21 @@ fun main() {
 
 open class Figure(
     open val name: String,
-) {}
+)
 
 class Circle(
     val circleRadius: Int,
     name: String = "круг",
-) : Figure(name) {
-}
+) : Figure(name)
 
 class Square(
     val squareSide: Int,
     name: String = "квадрат",
-) : Figure(name) {
-}
+) : Figure(name)
 
 class Point(
     name: String = "точка",
-) : Figure(name) {
-}
+) : Figure(name)
 
 class Screen(
 ) {
@@ -100,6 +97,5 @@ class Screen(
         println("Нарисована ${obj.name} по координатам x = $x, y = $y")
 
     }
-
 
 }
