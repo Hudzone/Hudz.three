@@ -21,7 +21,6 @@ class Order(
     private var singleItem: String = " "
     private var multipleItems: List<String> = mutableListOf()
 
-
     init {
         if (items.size == 1) {
             singleItem = items[0]
@@ -39,7 +38,6 @@ class Order(
     private fun printItem(
         item: List<String>,
     ) {
-
         print("Заказаны следующие товары: ")
 
         item.forEach { it ->
@@ -48,7 +46,6 @@ class Order(
     }
 
     fun printButton() {
-
         if (multipleItems.isEmpty()) {
             printItem(singleItem)
         } else {
