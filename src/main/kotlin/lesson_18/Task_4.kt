@@ -34,11 +34,11 @@ class CubePack(
 ) : Package() {
 
     override fun getCoverArea() {
-        val result = 6 * (edgeLength.getSquare())
+        val result = 6 * (edgeLength.pow())
         println("Площадь поверхности прямоугольной коробки: $result")
     }
 
-    private fun Int.getSquare(): Int {
+    private fun Int.pow(): Int {
         return this * this
     }
 }
