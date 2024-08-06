@@ -2,7 +2,7 @@ package lesson_18
 
 fun main() {
 
-    val list1 = listOf("пельмени")
+    val list1 = "пельмени"
     val list2 = listOf("лимонад", "макароны", "котлеты")
 
     val order1 = Order(1, list1)
@@ -13,21 +13,10 @@ fun main() {
 
 }
 
-class Order(
+class Order<T>(
     val orderNumber: Int,
-    private val items: List<String>,
+    private val items: T,
 ) {
-
-    private var singleItem: String = " "
-    private var multipleItems: List<String> = mutableListOf()
-
-    init {
-        if (items.size == 1) {
-            singleItem = items[0]
-        } else {
-            multipleItems = items
-        }
-    }
 
     private fun printItem(
         item: String,
@@ -36,7 +25,7 @@ class Order(
     }
 
     private fun printItem(
-        item: List<String>,
+        item: List<*>,
     ) {
         print("Заказаны следующие товары: ")
 
@@ -46,10 +35,9 @@ class Order(
     }
 
     fun printButton() {
-        if (multipleItems.isEmpty()) {
-            printItem(singleItem)
-        } else {
-            printItem(multipleItems)
+        when (items) {
+            is String -> printItem(items)
+            is List<*> -> printItem(items)
         }
     }
 
