@@ -23,7 +23,7 @@ enum class Ammo(val damage: Int?) {
 }
 
 class Tank(
-    private var ammo: Ammo = Ammo.EMPTY,
+    private var ammo: Ammo? = null,
 ) {
 
     private var isTankArmed: Boolean = false
@@ -48,7 +48,7 @@ class Tank(
         if (!isTankArmed) {
             println("Отсутствует снаряд. Зарядите")
         } else {
-            println("Произведен выстрел. Урон: ${ammo.damage}")
+            println("Произведен выстрел. Урон: ${ammo?.damage}")
         }
 
         ammo = Ammo.EMPTY
