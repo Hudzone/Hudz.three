@@ -3,6 +3,17 @@ package lesson_19
 
 fun main() {
 
+    val infoStorage = authService()
+
+    println("КАРТОТЕКА: ")
+    infoStorage.forEach { user ->
+        println("Имя: ${user.name}. Пол: ${user.gender.description} ")
+    }
+
+}
+
+fun authService() : MutableList<Human> {
+
     var i: Int = 0
     val infoStorage: MutableList<Human> = mutableListOf()
 
@@ -10,37 +21,44 @@ fun main() {
 
     while (i < 5) {
 
-        print("Имя: ")
-        val inputName: String = readln().trim().replaceFirstChar { it.uppercase() }
+        val typedName = nameInput()
+        var typedGender: String = genderInput()
 
-        print("Пол: ")
-        val inputGender: String = readln().trim().replaceFirstChar { it.uppercase() }
-        println()
+        while (typedGender != "М" && typedGender != "Ж") {
 
-        var resultGender: Gender
+            println("Пол указываем М или Ж.")
+            typedGender = genderInput()
 
-        if (inputGender == "М") {
-            resultGender = Gender.MALE
-        } else if (inputGender == "Ж") {
-            resultGender = Gender.FEMALE
+        }
+
+        val resultGender: Gender = if (typedGender == "М") {
+            Gender.MALE
         } else {
-            println("Пол указываем М или Ж. Данный экземпляр не будет создан")
-            continue
+            Gender.FEMALE
         }
 
         ++i
 
-        val user: Human = Human(inputName, resultGender)
+        val user: Human = Human(typedName, resultGender)
 
         infoStorage.add(user)
 
     }
 
-    println("КАРТОТЕКА: ")
-    infoStorage.forEach { user ->
-        println("Имя: ${user.name}. Пол: ${user.gender.description} ")
-    }
+    return infoStorage
 
+}
+
+fun nameInput(): String {
+    print("Имя: ")
+    val inputName: String = readln().trim().replaceFirstChar { it.uppercase() }
+    return inputName
+}
+
+fun genderInput(): String {
+    print("Пол: ")
+    val inputGender: String = readln().trim().replaceFirstChar { it.uppercase() }
+    return inputGender
 }
 
 enum class Gender(val description: String) {
