@@ -3,7 +3,7 @@ package lesson_19
 fun main() {
 
     println("Вы можете добавить следующих рыб:")
-    Fishes.values().forEach { println(it) }
+    Fishes.entries.forEach { println(it) }
 
 }
 
