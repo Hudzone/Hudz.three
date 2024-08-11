@@ -19,7 +19,6 @@ enum class Ammo(val damage: Int?) {
     BLUE(5),
     GREEN(10),
     RED(20),
-    EMPTY(null),
 }
 
 class Tank(
@@ -51,7 +50,7 @@ class Tank(
             println("Произведен выстрел. Урон: ${ammo?.damage}")
         }
 
-        ammo = Ammo.EMPTY
+        ammo = null
         isTankArmed = false
 
     }
