@@ -2,9 +2,13 @@ package lesson_20
 
 fun main() {
 
+    fun sayModifier(): (Robot) -> Unit = { robot ->
+        robot.modifierEnabled = true
+    }
+
     val robot = Robot()
     robot.say()
-    robot.sayModifier()
+    sayModifier()(robot)
     println()
     robot.say()
 
@@ -19,12 +23,8 @@ enum class Phrases(val phrase: String) {
 }
 
 class Robot(
-    private var modifierEnabled: Boolean = false
+    var modifierEnabled: Boolean = false
 ) {
-
-    fun sayModifier() {
-        modifierEnabled = true
-    }
 
     private fun speechRandomizer(): Phrases {
         val phrase = (1..5).random()
@@ -50,7 +50,7 @@ class Robot(
                 println(message)
             }
 
-            println(sayMod())
+            sayMod()
 
             modifierEnabled = false
 
