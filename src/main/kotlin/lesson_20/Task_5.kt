@@ -25,7 +25,6 @@ class Robot {
         this.modifier = mod
     }
 
-
     private fun speechRandomizer(): Phrases {
         val phrase = (1..5).random()
 
