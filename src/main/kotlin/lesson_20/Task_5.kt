@@ -44,6 +44,7 @@ class Robot {
 
         val finalMessage = modifier?.invoke(message) ?: message
         println(finalMessage)
+
     }
 
 }
