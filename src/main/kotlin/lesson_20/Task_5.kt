@@ -2,13 +2,9 @@ package lesson_20
 
 fun main() {
 
-    val lambda: (String) -> String = { string ->
-        string.reversed()
-    }
-
     val robot = Robot()
     robot.say()
-    robot.sayModifier(lambda)
+    robot.sayModifier { it.reversed() }
     robot.say()
 
 }
@@ -21,8 +17,7 @@ enum class Phrases(val phrase: String) {
     FIFTH("я разряжен")
 }
 
-class Robot(
-) {
+class Robot {
 
     private var modifier: ((String) -> String)? = null
 
