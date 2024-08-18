@@ -9,16 +9,6 @@ fun main() {
 
 fun List<Int>.evenNumbersSum(): Int {
 
-    var sumOfEven = 0
-
-    this.forEach { number ->
-
-        if (number % 2 == 0) {
-            sumOfEven += number
-        }
-
-    }
-
-    return sumOfEven
+    return this.filter { it % 2 == 0 }.sum()
 
 }
