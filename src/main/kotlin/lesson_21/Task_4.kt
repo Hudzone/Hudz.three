@@ -15,7 +15,7 @@ fun main() {
 fun File.addWord(word: String) {
 
     val fileReading = this.readText()
-    val rewrite = word.lowercase() + fileReading
+    val rewrite = word.lowercase() + "\n" + fileReading
     this.writeText(rewrite)
 
 }
