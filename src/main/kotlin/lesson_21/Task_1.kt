@@ -9,14 +9,5 @@ fun main() {
 
 fun String.vowelCounter(): Int {
     val vowels: List<Char> = listOf('а', 'я', 'у', 'о', 'ю', 'е', 'ё', 'э', 'и', 'ы')
-    var vowelCounter: Int = 0
-
-    this.forEach { c: Char ->
-        if (vowels.contains(c)) {
-            vowelCounter++
-        }
-    }
-
-    return vowelCounter
-
+    return this.count { it in vowels }
 }
