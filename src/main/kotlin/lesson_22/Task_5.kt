@@ -9,8 +9,16 @@ fun main() {
         4.36
     )
 
-    println(battle1)
+    val (name, description, dateTime, distanceFromEarth) = battle1
 
+    println(
+        """
+            Название места/события: $name
+            Описание места/события: $description
+            Дата и время события: $dateTime г.
+            Расстояние от Земли: $distanceFromEarth световых лет
+        """.trimIndent()
+    )
 }
 
 data class GalacticGuide(
@@ -18,13 +26,4 @@ data class GalacticGuide(
     val description: String,
     val dateTime: String,
     val distanceFromEarth: Double,
-) {
-    override fun toString(): String {
-        return """
-            Название места/события: $name
-            Описание места/события: $description
-            Дата и время события: $dateTime г.
-            Расстояние от Земли: $distanceFromEarth световых лет
-        """.trimIndent()
-    }
-}
+)
