@@ -2,26 +2,25 @@ package lesson_22
 
 fun main() {
 
-    val state = MainScreenState()
-    val viewModel = ViewModel(state)
+    val viewModel = MainScreenViewModel()
 
     println(viewModel.getData())
     viewModel.loadData()
 
 }
 
-data class MainScreenState(
-    val data: String? = null,
-    val isLoading: Boolean = false,
-) {
-    override fun toString(): String {
-        return "Данные - $data\nЗагрузка - $isLoading\n"
-    }
-}
+class MainScreenViewModel {
 
-class ViewModel(
-    private var mainScreenState: MainScreenState,
-) {
+    private var mainScreenState = MainScreenState()
+
+    data class MainScreenState(
+        val data: String? = null,
+        val isLoading: Boolean = false,
+    ) {
+        override fun toString(): String {
+            return "Данные - $data\nЗагрузка - $isLoading\n"
+        }
+    }
 
     fun getData(): MainScreenState = mainScreenState
 
