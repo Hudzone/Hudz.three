@@ -9,14 +9,17 @@ fun main() {
         4.36
     )
 
-    val (name, description, dateTime, distanceFromEarth) = battle1
+    val name = battle1.component1()
+    val decr = battle1.component2()
+    val dateTime = battle1.component3()
+    val distance = battle1.component4()
 
     println(
         """
             Название места/события: $name
-            Описание места/события: $description
+            Описание места/события: $decr
             Дата и время события: $dateTime г.
-            Расстояние от Земли: $distanceFromEarth световых лет
+            Расстояние от Земли: $distance световых лет
         """.trimIndent()
     )
 }
